@@ -3,7 +3,7 @@
 import de.bezier.guido.*;
 public final static int NUM_ROWS = 20;
 public final static int NUM_COLS = 20;
-public final static int NUM_BOMBS = 210;
+public final static int NUM_BOMBS = 50;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 boolean isLost = false;
 int tileCount = 0;
@@ -49,18 +49,33 @@ public void draw ()
       }
     }
 }
-public boolean isWon()
-{
-    //your code here
-    return false;
-}
+public boolean isWon(){return false;}
 public void displayLosingMessage()
-{
-    //your code here
+{  
+    for(int i=0;i<bombs.size();i++)
+        if(bombs.get(i).isClicked()==false)
+            bombs.get(i).mousePressed();
+    isLost = true;
+    buttons[NUM_ROWS/2][(NUM_COLS/2)-4].setLabel("Y");
+    buttons[NUM_ROWS/2][(NUM_COLS/2)-3].setLabel("O");
+    buttons[NUM_ROWS/2][(NUM_COLS/2-2)].setLabel("U");
+    buttons[NUM_ROWS/2][(NUM_COLS/2-1)].setLabel("");
+    buttons[NUM_ROWS/2][(NUM_COLS/2)].setLabel("L");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+1)].setLabel("O");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+2)].setLabel("S");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+3)].setLabel("E");
 }
 public void displayWinningMessage()
 {
-    //your code here
+    isLost = true;
+    buttons[NUM_ROWS/2][(NUM_COLS/2)-4].setLabel("Y");
+    buttons[NUM_ROWS/2][(NUM_COLS/2)-3].setLabel("O");
+    buttons[NUM_ROWS/2][(NUM_COLS/2-2)].setLabel("U");
+    buttons[NUM_ROWS/2][(NUM_COLS/2-1)].setLabel("");
+    buttons[NUM_ROWS/2][(NUM_COLS/2)].setLabel("W");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+1)].setLabel("I");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+2)].setLabel("N");
+    buttons[NUM_ROWS/2][(NUM_COLS/2+3)].setLabel("!");
 }
 
 public class MSButton
@@ -210,33 +225,4 @@ public class MSButton
         }
         return numBombs;
     }
-  public boolean isWon(){return false;}
-    
-  public void displayLosingMessage()
-  {  
-    for(int i=0;i<bombs.size();i++)
-        if(bombs.get(i).isClicked()==false)
-            bombs.get(i).mousePressed();
-    isLost = true;
-    buttons[NUM_ROWS/2][(NUM_COLS/2)-4].setLabel("Y");
-    buttons[NUM_ROWS/2][(NUM_COLS/2)-3].setLabel("O");
-    buttons[NUM_ROWS/2][(NUM_COLS/2-2)].setLabel("U");
-    buttons[NUM_ROWS/2][(NUM_COLS/2-1)].setLabel("");
-    buttons[NUM_ROWS/2][(NUM_COLS/2)].setLabel("L");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+1)].setLabel("O");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+2)].setLabel("S");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+3)].setLabel("E");
-  }
-  public void displayWinningMessage()
-  {
-    isLost = true;
-    buttons[NUM_ROWS/2][(NUM_COLS/2)-4].setLabel("Y");
-    buttons[NUM_ROWS/2][(NUM_COLS/2)-3].setLabel("O");
-    buttons[NUM_ROWS/2][(NUM_COLS/2-2)].setLabel("U");
-    buttons[NUM_ROWS/2][(NUM_COLS/2-1)].setLabel("");
-    buttons[NUM_ROWS/2][(NUM_COLS/2)].setLabel("W");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+1)].setLabel("I");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+2)].setLabel("N");
-    buttons[NUM_ROWS/2][(NUM_COLS/2+3)].setLabel("!");
-  }
 }
