@@ -33,7 +33,6 @@ public void setBombs()
     int c = (int)(Math.random() * 20);
     if(!bombs.contains(buttons[r][c])){
     bombs.add(buttons[r][c]);
-    System.out.println(c+ " , " + r);
   }
  }
 }
@@ -110,12 +109,8 @@ public class MSButton
     public void mousePressed () 
     {
          if (isLost == false) {
-        if (mouseButton == RIGHT && buttons[r][c].isClicked()) {
-         
-        }
-        else if (mouseButton == RIGHT) {
-          marked = !marked;
-        }
+        if (mouseButton == RIGHT && buttons[r][c].isClicked()) {}
+        else if (mouseButton == RIGHT) {marked = !marked;}
         else if (marked == true) {}
         else if (bombs.contains(this)) {
           clicked = true;
